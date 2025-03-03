@@ -12,5 +12,26 @@
     "title": "About",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "project_1.html",
+    "href": "project_1.html",
+    "title": "Project 1",
+    "section": "",
+    "text": "Project 1 goes here."
+  },
+  {
+    "objectID": "project_3.html",
+    "href": "project_3.html",
+    "title": "Project 3",
+    "section": "",
+    "text": "Project 3 goes here."
+  },
+  {
+    "objectID": "project_2.html",
+    "href": "project_2.html",
+    "title": "Project 2",
+    "section": "",
+    "text": "Project 2 goes here."
   }
 ]
