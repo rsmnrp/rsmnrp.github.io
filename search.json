@@ -16,9 +16,9 @@
   {
     "objectID": "project_1.html",
     "href": "project_1.html",
-    "title": "Project 1",
+    "title": "Big Data Analytics Project",
     "section": "",
-    "text": "Project 1 goes here."
+    "text": "For our big data project, my group and I analysed the used car market dynamics in Singapore by looking at the factors that affect the price of a used car and their significance."
   },
   {
     "objectID": "project_3.html",
@@ -33,5 +33,33 @@
     "title": "Project 2",
     "section": "",
     "text": "Project 2 goes here."
+  },
+  {
+    "objectID": "project_1.html#final-dataset-features",
+    "href": "project_1.html#final-dataset-features",
+    "title": "Big Data Analytics Project",
+    "section": "Final Dataset Features",
+    "text": "Final Dataset Features\n\nCURB_WEIGHT_KG\nOMV\nCOE_LISTED:\nENGINE_CAPACITY_CC\nDAYS_OF_COE_LEFT\nMILEAGE_KM\nFEATURE_COUNT\nACCESSORIES_COUNT\nAGE_SINCE_MANUFACTURED\nNO_OF_OWNERS\nDAYS_SINCE_REGISTERED\nTYPE\nTRANSMISSION\nBRAND_CATEGORY\n\nWe then plot correlation plots, raster plots and bar plots with the final variables."
+  },
+  {
+    "objectID": "project_1.html#correlation-plots-between-final-variables",
+    "href": "project_1.html#correlation-plots-between-final-variables",
+    "title": "Big Data Analytics Project",
+    "section": "Correlation Plots Between Final Variables",
+    "text": "Correlation Plots Between Final Variables\nWe see that variables CURB_WEIGHT_KG, OMV, COE_LISTED, ENGINE_CAPACITY_CC, DAYS_OF_COE_LEFT have a positive relationship with PRICE while variables MILEAGE_KM, FEATURE_COUNT, ACCESSORIES_COUNT, AGE_SINCE_MANUFACTURED, NO_OF_OWNERS and DAYS_SINCE_REGISTERED have a negative relationship with PRICE."
+  },
+  {
+    "objectID": "project_1.html#raster-plots-for-numerical-variables",
+    "href": "project_1.html#raster-plots-for-numerical-variables",
+    "title": "Big Data Analytics Project",
+    "section": "Raster Plots for numerical variables",
+    "text": "Raster Plots for numerical variables"
+  },
+  {
+    "objectID": "project_1.html#bar-plots-for-character-variables",
+    "href": "project_1.html#bar-plots-for-character-variables",
+    "title": "Big Data Analytics Project",
+    "section": "Bar Plots for character variables",
+    "text": "Bar Plots for character variables"
   }
 ]
