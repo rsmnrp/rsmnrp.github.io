@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Project 2 – My Portfolio</title>
+<title>Time Series Data Analysis Project – My Portfolio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -98,7 +132,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./project_2.html" aria-current="page"> 
-<span class="menu-text">Project 2</span></a>
+<span class="menu-text">Time Series Data Analysis Project</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./project_3.html"> 
@@ -119,15 +153,64 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#converting-to-time-series" id="toc-converting-to-time-series" class="nav-link" data-scroll-target="#converting-to-time-series">Converting to time series</a>
+  <ul class="collapse">
+  <li><a href="#greenhouse-gas-emissions" id="toc-greenhouse-gas-emissions" class="nav-link" data-scroll-target="#greenhouse-gas-emissions">Greenhouse gas emissions</a></li>
+  <li><a href="#temperature-anomalies" id="toc-temperature-anomalies" class="nav-link" data-scroll-target="#temperature-anomalies">Temperature Anomalies</a></li>
+  <li><a href="#mean-sea-level" id="toc-mean-sea-level" class="nav-link" data-scroll-target="#mean-sea-level">Mean Sea Level</a></li>
+  </ul></li>
+  <li><a href="#testing-for-stationarity" id="toc-testing-for-stationarity" class="nav-link" data-scroll-target="#testing-for-stationarity">Testing for stationarity</a></li>
+  <li><a href="#differencing" id="toc-differencing" class="nav-link" data-scroll-target="#differencing">Differencing</a></li>
+  <li><a href="#univariate-time-analysis" id="toc-univariate-time-analysis" class="nav-link" data-scroll-target="#univariate-time-analysis">Univariate time analysis</a>
+  <ul class="collapse">
+  <li><a href="#greenhouse-gas-emissions-1" id="toc-greenhouse-gas-emissions-1" class="nav-link" data-scroll-target="#greenhouse-gas-emissions-1">Greenhouse gas emissions</a>
+  <ul class="collapse">
+  <li><a href="#acfpacf" id="toc-acfpacf" class="nav-link" data-scroll-target="#acfpacf">ACF/PACF</a></li>
+  <li><a href="#best-model" id="toc-best-model" class="nav-link" data-scroll-target="#best-model">Best model</a></li>
+  </ul></li>
+  <li><a href="#temperature-anomalies-1" id="toc-temperature-anomalies-1" class="nav-link" data-scroll-target="#temperature-anomalies-1">Temperature anomalies</a>
+  <ul class="collapse">
+  <li><a href="#acfpacf-1" id="toc-acfpacf-1" class="nav-link" data-scroll-target="#acfpacf-1">ACF/PACF</a></li>
+  <li><a href="#arima-modelling" id="toc-arima-modelling" class="nav-link" data-scroll-target="#arima-modelling">Arima modelling</a></li>
+  </ul></li>
+  <li><a href="#mean-sea-level-1" id="toc-mean-sea-level-1" class="nav-link" data-scroll-target="#mean-sea-level-1">Mean sea level</a></li>
+  </ul></li>
+  <li><a href="#multivariate-time-analysis" id="toc-multivariate-time-analysis" class="nav-link" data-scroll-target="#multivariate-time-analysis">Multivariate time analysis</a>
+  <ul class="collapse">
+  <li><a href="#arima-x" id="toc-arima-x" class="nav-link" data-scroll-target="#arima-x">ARIMA-X</a>
+  <ul class="collapse">
+  <li><a href="#between-2-variables" id="toc-between-2-variables" class="nav-link" data-scroll-target="#between-2-variables">Between 2 variables</a></li>
+  <li><a href="#among-the-3-variables" id="toc-among-the-3-variables" class="nav-link" data-scroll-target="#among-the-3-variables">Among the 3 variables</a></li>
+  </ul></li>
+  <li><a href="#vector-autoregression-var" id="toc-vector-autoregression-var" class="nav-link" data-scroll-target="#vector-autoregression-var">Vector Autoregression (VAR)</a>
+  <ul class="collapse">
+  <li><a href="#temperature-anomalies-and-mean-sea-level" id="toc-temperature-anomalies-and-mean-sea-level" class="nav-link" data-scroll-target="#temperature-anomalies-and-mean-sea-level">Temperature anomalies and mean sea level</a></li>
+  </ul></li>
+  <li><a href="#vector-error-correction-model" id="toc-vector-error-correction-model" class="nav-link" data-scroll-target="#vector-error-correction-model">Vector Error Correction Model</a>
+  <ul class="collapse">
+  <li><a href="#determining-number-of-cointegrating-relationships" id="toc-determining-number-of-cointegrating-relationships" class="nav-link" data-scroll-target="#determining-number-of-cointegrating-relationships">Determining number of cointegrating relationships</a></li>
+  <li><a href="#determine-number-of-lags" id="toc-determine-number-of-lags" class="nav-link" data-scroll-target="#determine-number-of-lags">Determine number of lags</a></li>
+  <li><a href="#building-vecm-model" id="toc-building-vecm-model" class="nav-link" data-scroll-target="#building-vecm-model">Building VECM model</a></li>
+  <li><a href="#ljung-box-test" id="toc-ljung-box-test" class="nav-link" data-scroll-target="#ljung-box-test">Ljung-Box test</a></li>
+  <li><a href="#predict-future-values" id="toc-predict-future-values" class="nav-link" data-scroll-target="#predict-future-values">Predict future values</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Project 2</h1>
+<h1 class="title">Time Series Data Analysis Project</h1>
 </div>
 
 
@@ -144,9 +227,886 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Project 2 goes here.</p>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>In this project, my group and I aim to investigate the relationship between climate change and three variables (greenhouse gas emissions, mean sea level and anomalies in land-surface air and sea-surface water temperatures) by examining its patterns and trends.</p>
+<p>The dataset used encompasses global, yearly records from 1880 to 2020. We have also conducted forecasts for these variables over the next 80 years, providing insights into the climate change issue in the foreseeable future.</p>
+</section>
+<section id="converting-to-time-series" class="level1">
+<h1>Converting to time series</h1>
+<p>We convert our dataset, as well as all three individual variables into time series. We then used autoplot to visualise how each of these individual variables evolve over time.</p>
+<section id="greenhouse-gas-emissions" class="level2">
+<h2 class="anchored" data-anchor-id="greenhouse-gas-emissions">Greenhouse gas emissions</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>There is an accelerating upward trend in greenhouse gas emissions, probably due to increasing human activities.</p>
+</section>
+<section id="temperature-anomalies" class="level2">
+<h2 class="anchored" data-anchor-id="temperature-anomalies">Temperature Anomalies</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>There is also an increasing upward trend in temperature anomalies. This can be attributed to the increase in greenhouse gas emissions above, further increasing the surface temperature of the Earth.</p>
+</section>
+<section id="mean-sea-level" class="level2">
+<h2 class="anchored" data-anchor-id="mean-sea-level">Mean Sea Level</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>There is also an upward trend in mean sea level for the past 140 years. This is probably due to thermal expansion and melting of land-based ice, causing the increase in Earth’s temperature.</p>
+</section>
+</section>
+<section id="testing-for-stationarity" class="level1">
+<h1>Testing for stationarity</h1>
+<p>We used the KPSS test to evaluate if the mean and variance of a time series are constant over time. The null hypothesis suggests that the data is stationary. Hence, if our test statistic is more than 0.05, this indicates that our null hypothesis is rejected and thus requires differencing.</p>
+<p><strong>Greenhouse gas emissions time series:</strong></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+####################################### 
+# KPSS Unit Root / Cointegration Test # 
+####################################### 
+
+The value of the test statistic is: 2.7334 </code></pre>
+</div>
+</div>
+<p><strong>Temperature anomalies time series:</strong></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+####################################### 
+# KPSS Unit Root / Cointegration Test # 
+####################################### 
+
+The value of the test statistic is: 2.4629 </code></pre>
+</div>
+</div>
+<p><strong>Mean sea level time series:</strong></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+####################################### 
+# KPSS Unit Root / Cointegration Test # 
+####################################### 
+
+The value of the test statistic is: 2.8499 </code></pre>
+</div>
+</div>
+<p>Since all of the above t-statistics exceed critical value at our chosen significance level of 5%, it suggests that data for the three variables are not stationary and we require differencing.</p>
+</section>
+<section id="differencing" class="level1">
+<h1>Differencing</h1>
+<p>We proceed to difference our data to remove trends and/or seasonality, making it stationary. Since our data focuses on macro-level phenomena and the influence of seasonal fluctuations might be negligible, we only use the ndiffs() function instead of nsdiffs()</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ndiffs</span>(ghg_ts) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ndiffs</span>(temp_ts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ndiffs</span>(msl_ts) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<p>Here, we require 2 differences for greenhouse gas emissions and 1 difference for both temperature anomalies and mean sea level.</p>
+</section>
+<section id="univariate-time-analysis" class="level1">
+<h1>Univariate time analysis</h1>
+<section id="greenhouse-gas-emissions-1" class="level2">
+<h2 class="anchored" data-anchor-id="greenhouse-gas-emissions-1">Greenhouse gas emissions</h2>
+<section id="acfpacf" class="level3">
+<h3 class="anchored" data-anchor-id="acfpacf">ACF/PACF</h3>
+<p>We use ACF/PACF to identify patterns and relationships between observations at different time lags. By examining the decay or cut-off patterns in the plots, we can determine the order of autoregressive (AR) and moving average (MA) components in models like ARIMA (Autoregressive Integrated Moving Average).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>4th lag has significant spike before ACF values drop within the confidence interval, indicating the number of terms in the MA model, which is MA(4).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>1 significant spike at lag 1 and PACF values fall sharply within the confidence interval after. This suggests an AR(1) model.</p>
+</section>
+<section id="best-model" class="level3">
+<h3 class="anchored" data-anchor-id="best-model">Best model</h3>
+<p>We considered auto arima as it is convenient for automatic model selection as it automatically searches through a range of possible ARIMA model specifications to identify the best-fitting model based on selected criteria. We also did manual Arima modelling as we realise that auto Arima may not capture all relevant aspects of the data.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Series: ghg_ts 
+ARIMA(0,1,0) with drift 
+Box Cox transformation: lambda= 0.0819848 
+
+Coefficients:
+       drift
+      0.1094
+s.e.  0.0127
+
+sigma^2 = 0.0228:  log likelihood = 66.6
+AIC=-129.2   AICc=-129.11   BIC=-123.31
+
+Training set error measures:
+                    ME      RMSE       MAE        MPE     MAPE      MASE
+Training set -10078753 541373695 330494607 -0.0168317 1.534341 0.6861922
+                   ACF1
+Training set 0.03589983</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Ljung-Box test
+
+data:  Residuals from ARIMA(0,1,0) with drift
+Q* = 15.96, df = 10, p-value = 0.1008
+
+Model df: 0.   Total lags used: 10</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                       ME      RMSE       MAE         MPE     MAPE      MASE
+Training set     92074.15 233395571 162055510 -0.06343501 1.586946 0.7469053
+Test set     247042413.33 553154516 424192168  1.56996909 2.874838 1.9550795
+                   ACF1 Theil's U
+Training set -0.1017599        NA
+Test set      0.1356965 0.9364229</code></pre>
+</div>
+</div>
+<p>We conclude that the best ARIMA model is (0, 1, 0) as it has the lowest MAPE and AICc than our manual Arima models.</p>
+</section>
+</section>
+<section id="temperature-anomalies-1" class="level2">
+<h2 class="anchored" data-anchor-id="temperature-anomalies-1">Temperature anomalies</h2>
+<p>We do the same as above for the other variables.</p>
+<section id="acfpacf-1" class="level3">
+<h3 class="anchored" data-anchor-id="acfpacf-1">ACF/PACF</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="arima-modelling" class="level3">
+<h3 class="anchored" data-anchor-id="arima-modelling">Arima modelling</h3>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in guerrero(x, lower, upper): Guerrero's method for selecting a Box-Cox
+parameter (lambda) is given for strictly positive data.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Series: temp_ts 
+ARIMA(0,1,2) with drift 
+Box Cox transformation: lambda= 1.253547 
+
+Coefficients:
+          ma1      ma2   drift
+      -0.3710  -0.2426  0.0046
+s.e.   0.0787   0.0737  0.0020
+
+sigma^2 = 0.003582:  log likelihood = 196.89
+AIC=-385.78   AICc=-385.48   BIC=-374.01
+
+Training set error measures:
+                       ME       RMSE        MAE      MPE     MAPE      MASE
+Training set -0.001869223 0.09302429 0.07689913 83.65737 126.8209 0.9288366
+                    ACF1
+Training set -0.01905851</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Ljung-Box test
+
+data:  Residuals from ARIMA(0,1,2) with drift
+Q* = 8.806, df = 8, p-value = 0.3589
+
+Model df: 2.   Total lags used: 10</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                      ME       RMSE        MAE       MPE      MAPE      MASE
+Training set 0.006552768 0.08995245 0.07695409 143.31483 215.40489 0.9565581
+Test set     0.011865395 0.11716223 0.10616997  96.09611  96.09611 1.3197186
+                    ACF1 Theil's U
+Training set 0.005167274        NA
+Test set     0.577995268  1.299916</code></pre>
+</div>
+</div>
+<p>We conclude that the best model is ARIMA(0, 1, 2) as it has the lowest RMSE/MAPE than our manual Arima models.</p>
+</section>
+</section>
+<section id="mean-sea-level-1" class="level2">
+<h2 class="anchored" data-anchor-id="mean-sea-level-1">Mean sea level</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Series: msl_ts 
+ARIMA(1,2,2) 
+Box Cox transformation: lambda= 1.316535 
+
+Coefficients:
+         ar1      ma1     ma2
+      0.3567  -1.6722  0.6989
+s.e.  0.1957   0.1550  0.1519
+
+sigma^2 = 498.5:  log likelihood = -629.18
+AIC=1266.37   AICc=1266.67   BIC=1278.11
+
+Training set error measures:
+                    ME     RMSE      MAE        MPE     MAPE      MASE
+Training set 0.5148822 5.309408 4.030768 -0.7652999 6.692395 0.8568315
+                    ACF1
+Training set -0.03735404</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Ljung-Box test
+
+data:  Residuals from ARIMA(0,1,2) with drift
+Q* = 8.806, df = 8, p-value = 0.3589
+
+Model df: 2.   Total lags used: 10</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                      ME     RMSE      MAE       MPE     MAPE      MASE
+Training set -0.05074935 5.656688 4.242850 -4.298562 13.01068 0.8643036
+Test set      8.06832080 9.097511 8.104087  7.826382  7.86589 1.6508693
+                  ACF1 Theil's U
+Training set 0.1679530        NA
+Test set     0.4945515  1.923896</code></pre>
+</div>
+</div>
+<p>We conclude that the best model is ARIMA(0, 1, 2).</p>
+</section>
+</section>
+<section id="multivariate-time-analysis" class="level1">
+<h1>Multivariate time analysis</h1>
+<section id="arima-x" class="level2">
+<h2 class="anchored" data-anchor-id="arima-x">ARIMA-X</h2>
+<p>We also conducted ARIMA-X modelling as we wanted to leverage on the information provided by both the time series data as well as additional exogenous variables to improve forecasting accuracy and to understand the relationship between our target variable and each of the predictors.</p>
+<section id="between-2-variables" class="level3">
+<h3 class="anchored" data-anchor-id="between-2-variables">Between 2 variables</h3>
+<section id="temperature-anomalies-vs-greenhouse-gas-emissions" class="level4">
+<h4 class="anchored" data-anchor-id="temperature-anomalies-vs-greenhouse-gas-emissions">Temperature anomalies vs Greenhouse gas emissions</h4>
+<p><strong>Best model</strong></p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in guerrero(x, lower, upper): Guerrero's method for selecting a Box-Cox
+parameter (lambda) is given for strictly positive data.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Series: data[, "temp.anomalies"] 
+Regression with ARIMA(1,2,2) errors 
+Box Cox transformation: lambda= 1.131028 
+
+Coefficients:</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in sqrt(diag(x$var.coef)): NaNs produced</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         ar1      ma1     ma2  xreg
+      0.4628  -1.8547  0.8691     0
+s.e.  0.0766   0.0083  0.0026   NaN
+
+sigma^2 = 0.006754:  log likelihood = 149.63
+AIC=-289.26   AICc=-288.81   BIC=-274.58
+
+Training set error measures:
+                     ME      RMSE        MAE      MPE     MAPE      MASE
+Training set 0.01289628 0.1011968 0.08427159 76.74575 128.5643 0.9195055
+                   ACF1
+Training set 0.03088324</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We generated a few models and decided on ARIMA(1, 2, 2) as our best model, with the lowest AICc value and an improved forecast plot.</p>
+</section>
+<section id="mean-sea-level-vs-temperature-anomalies" class="level4">
+<h4 class="anchored" data-anchor-id="mean-sea-level-vs-temperature-anomalies">Mean sea level vs temperature anomalies</h4>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in guerrero(x, lower, upper): Guerrero's method for selecting a Box-Cox
+parameter (lambda) is given for strictly positive data.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Series: data[, "mean.sea.level"] 
+Regression with ARIMA(0,1,1) errors 
+Box Cox transformation: lambda= 0.7605642 
+
+Coefficients:
+          ma1   drift    xreg
+      -0.3113  0.6992  1.6075
+s.e.   0.0798  0.1177  1.6278
+
+sigma^2 = 4.098:  log likelihood = -295.92
+AIC=599.83   AICc=600.13   BIC=611.6
+
+Training set error measures:
+                     ME     RMSE      MAE       MPE     MAPE      MASE
+Training set -0.3419077 5.478202 4.227579 -2.295289 13.57332 0.8986682
+                     ACF1
+Training set -0.008332118</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="mean-sea-level-vs-greenhouse-gas-emissions" class="level4">
+<h4 class="anchored" data-anchor-id="mean-sea-level-vs-greenhouse-gas-emissions">Mean sea level vs greenhouse gas emissions</h4>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in guerrero(x, lower, upper): Guerrero's method for selecting a Box-Cox
+parameter (lambda) is given for strictly positive data.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Series: data[, "mean.sea.level"] 
+Regression with ARIMA(1,2,2) errors 
+Box Cox transformation: lambda= 0.7605642 
+
+Coefficients:</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in sqrt(diag(x$var.coef)): NaNs produced</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         ar1      ma1     ma2  xreg
+      0.3391  -1.6974  0.7256     0
+s.e.  0.1241   0.0430  0.0448   NaN
+
+sigma^2 = 3.897:  log likelihood = -291.58
+AIC=593.17   AICc=593.62   BIC=607.84
+
+Training set error measures:
+                    ME     RMSE      MAE       MPE     MAPE      MASE
+Training set 0.3156484 5.314409 4.009108 -3.744495 12.89853 0.8522272
+                    ACF1
+Training set 0.002902288</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We ended up with ARIMA(1,2,2) being the best model, with the lowest AICc value.</p>
+</section>
+</section>
+<section id="among-the-3-variables" class="level3">
+<h3 class="anchored" data-anchor-id="among-the-3-variables">Among the 3 variables</h3>
+<section id="mean-sea-level-as-y-variable" class="level4">
+<h4 class="anchored" data-anchor-id="mean-sea-level-as-y-variable">Mean sea level as Y variable</h4>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Series: data["mean.sea.level"] 
+Regression with ARIMA(0,1,2) errors 
+
+Coefficients:
+          ma1      ma2   drift  ghg.emission  temp.anomalies
+      -0.4201  -0.1637  1.3287             0          5.0938
+s.e.   0.0836   0.0838  0.1010             0          4.3947
+
+sigma^2 = 28.68:  log likelihood = -431.2
+AIC=874.4   AICc=875.04   BIC=892.05
+
+Training set error measures:
+                      ME     RMSE      MAE       MPE     MAPE      MASE
+Training set -0.02364897 5.239836 4.072119 -5.896119 15.85623 0.8656217
+                    ACF1
+Training set 0.005115978</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-18-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-18-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Ljung-Box test
+
+data:  Residuals from Regression with ARIMA(0,1,2) errors
+Q* = 4.2628, df = 8, p-value = 0.8327
+
+Model df: 2.   Total lags used: 10</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-18-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="temperature-anomalies-as-y-variable" class="level4">
+<h4 class="anchored" data-anchor-id="temperature-anomalies-as-y-variable">Temperature anomalies as Y variable</h4>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Series: data["temp.anomalies"] 
+Regression with ARIMA(2,0,3) errors 
+
+Coefficients:
+         ar1     ar2     ma1      ma2      ma3  intercept  ghg.emission
+      0.0058  0.8720  0.6365  -0.5240  -0.3082    -0.0994             0
+s.e.  0.0732  0.0672  0.1047   0.0992   0.0839     0.2462             0
+      mean.sea.level
+              0.0017
+s.e.          0.0014
+
+sigma^2 = 0.01005:  log likelihood = 127.77
+AIC=-237.55   AICc=-236.17   BIC=-211.01
+
+Training set error measures:
+                       ME       RMSE       MAE      MPE     MAPE      MASE
+Training set -0.003360672 0.09738181 0.0804904 47.35752 95.14296 0.8782482
+                    ACF1
+Training set -0.01695221</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-19-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-19-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Ljung-Box test
+
+data:  Residuals from Regression with ARIMA(2,0,3) errors
+Q* = 3.2539, df = 5, p-value = 0.6609
+
+Model df: 5.   Total lags used: 10</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-19-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="vector-autoregression-var" class="level2">
+<h2 class="anchored" data-anchor-id="vector-autoregression-var">Vector Autoregression (VAR)</h2>
+<p>We used VAR analysis to conduct a simultaneous time series forecast of 2 interdependent variables.</p>
+<p>Due to model complexity, we choose to study only the variables temperature anomalies and mean sea level.</p>
+<section id="temperature-anomalies-and-mean-sea-level" class="level3">
+<h3 class="anchored" data-anchor-id="temperature-anomalies-and-mean-sea-level">Temperature anomalies and mean sea level</h3>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: MASS</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'MASS'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:dplyr':
+
+    select</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:fma':
+
+    cement, housing, petrol</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: strucchange</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: zoo</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'zoo'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    as.Date, as.Date.numeric</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: sandwich</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: lmtest</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$selection
+AIC(n)  HQ(n)  SC(n) FPE(n) 
+     4      2      1      4 
+
+$criteria
+                1          2          3          4          5          6
+AIC(n) -1.2194397 -1.3016037 -1.3123297 -1.3293649 -1.2882188 -1.2705232
+HQ(n)  -1.1659288 -1.2124189 -1.1874709 -1.1688322 -1.0920122 -1.0386427
+SC(n)  -1.0877513 -1.0821230 -1.0050567 -0.9342996 -0.8053613 -0.6998734
+FPE(n)  0.2954004  0.2721153  0.2692471  0.2647601  0.2759802  0.2810529
+                7          8          9         10
+AIC(n) -1.2262336 -1.1822807 -1.1627808 -1.1335708
+HQ(n)  -0.9586791 -0.8790523 -0.8238785 -0.7589945
+SC(n)  -0.5677914 -0.4360463 -0.3287541 -0.2117518
+FPE(n)  0.2939881  0.3074825  0.3139063  0.3236826</code></pre>
+</div>
+</div>
+<p>Since SC shows 1, we start with VAR(1) and iterate until there is no longer any residual serial correlation.</p>
+<p><strong>Our chosen VAR model</strong></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Portmanteau Test (asymptotic)
+
+data:  Residuals of VAR object varmodel5
+Chi-squared = 17.505, df = 20, p-value = 0.62</code></pre>
+</div>
+</div>
+<p>It has the highest p-value and residuals do not contain serial correlation</p>
+<p><strong>Our plot</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="vector-error-correction-model" class="level2">
+<h2 class="anchored" data-anchor-id="vector-error-correction-model">Vector Error Correction Model</h2>
+<p>Special case of VAR, includes all the terms that are in the VAR and more.</p>
+<section id="determining-number-of-cointegrating-relationships" class="level3">
+<h3 class="anchored" data-anchor-id="determining-number-of-cointegrating-relationships">Determining number of cointegrating relationships</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">ca.jo</span>(tempmsl))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+###################### 
+# Johansen-Procedure # 
+###################### 
+
+Test type: maximal eigenvalue statistic (lambda max) , with linear trend 
+
+Eigenvalues (lambda):
+[1] 0.1222926 0.0258292
+
+Values of teststatistic and critical values of test:
+
+          test 10pct  5pct  1pct
+r &lt;= 1 |  3.64  6.50  8.18 11.65
+r = 0  | 18.13 12.91 14.90 19.19
+
+Eigenvectors, normalised to first column:
+(These are the cointegration relations)
+
+                  mean.sea.level.l2 temp.anomalies.l2
+mean.sea.level.l2            1.0000            1.0000
+temp.anomalies.l2         -199.2354          142.5095
+
+Weights W:
+(This is the loading matrix)
+
+                 mean.sea.level.l2 temp.anomalies.l2
+mean.sea.level.d       -0.02337127      0.0074556040
+temp.anomalies.d        0.00130072      0.0000577494</code></pre>
+</div>
+</div>
+<p>3.64 is smaller than all of the critical values, thus we conclude that there is 1 cointegrating relationship.</p>
+</section>
+<section id="determine-number-of-lags" class="level3">
+<h3 class="anchored" data-anchor-id="determine-number-of-lags">Determine number of lags</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">VARselect</span>(tempmsl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$selection
+AIC(n)  HQ(n)  SC(n) FPE(n) 
+     4      2      1      4 
+
+$criteria
+                1          2          3          4          5          6
+AIC(n) -1.2194397 -1.3016037 -1.3123297 -1.3293649 -1.2882188 -1.2705232
+HQ(n)  -1.1659288 -1.2124189 -1.1874709 -1.1688322 -1.0920122 -1.0386427
+SC(n)  -1.0877513 -1.0821230 -1.0050567 -0.9342996 -0.8053613 -0.6998734
+FPE(n)  0.2954004  0.2721153  0.2692471  0.2647601  0.2759802  0.2810529
+                7          8          9         10
+AIC(n) -1.2262336 -1.1822807 -1.1627808 -1.1335708
+HQ(n)  -0.9586791 -0.8790523 -0.8238785 -0.7589945
+SC(n)  -0.5677914 -0.4360463 -0.3287541 -0.2117518
+FPE(n)  0.2939881  0.3074825  0.3139063  0.3236826</code></pre>
+</div>
+</div>
+</section>
+<section id="building-vecm-model" class="level3">
+<h3 class="anchored" data-anchor-id="building-vecm-model">Building VECM model</h3>
+<p>Build a VECM model with lag 1 and 1 cointegrating relationship</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_2_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                                ECT  Intercept mean.sea.level -1
+Equation mean.sea.level -0.02337127 0.05809115      -0.284712293
+Equation temp.anomalies  0.00130072 0.12966909      -0.001091056
+                        temp.anomalies -1
+Equation mean.sea.level        1.57031527
+Equation temp.anomalies       -0.08026665</code></pre>
+</div>
+</div>
+</section>
+<section id="ljung-box-test" class="level3">
+<h3 class="anchored" data-anchor-id="ljung-box-test">Ljung-Box test</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>residuals <span class="ot">&lt;-</span> <span class="fu">resid</span>(vecmmodel)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Box.test</span>(residuals[,<span class="dv">1</span>], <span class="at">lag =</span> <span class="dv">1</span>, <span class="at">type =</span> <span class="st">"Ljung"</span>) <span class="co"># mean sea level</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Box-Ljung test
+
+data:  residuals[, 1]
+X-squared = 0.16196, df = 1, p-value = 0.6874</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Box.test</span>(residuals[,<span class="dv">2</span>], <span class="at">lag =</span> <span class="dv">1</span>, <span class="at">type =</span> <span class="st">"Ljung"</span>) <span class="co"># temp anomalies</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Box-Ljung test
+
+data:  residuals[, 2]
+X-squared = 0.084895, df = 1, p-value = 0.7708</code></pre>
+</div>
+</div>
+<p>Since p-values are more than 0.05, we fail to reject null hypothesis. This indicates that there is insufficient evidence to conclude that there is autocorrelation.</p>
+</section>
+<section id="predict-future-values" class="level3">
+<h3 class="anchored" data-anchor-id="predict-future-values">Predict future values</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(vecmmodel, <span class="at">n.ahead=</span><span class="dv">80</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    mean.sea.level temp.anomalies
+142       67.85203      0.9567247
+143       70.16557      0.9291047
+144       72.20801      0.9089553
+145       74.19780      0.8963804
+146       76.10942      0.8891019
+147       77.97305      0.8858563
+148       79.79801      0.8856045
+149       81.59485      0.8875936
+150       83.37048      0.8912552
+151       85.13033      0.8961664
+152       86.87838      0.9020109
+153       88.61761      0.9085524
+154       90.35026      0.9156147
+155       92.07799      0.9230658
+156       93.80204      0.9308074
+157       95.52335      0.9387660
+158       97.24262      0.9468867
+159       98.96035      0.9551284
+160      100.67694      0.9634605
+161      102.39268      0.9718601
+162      104.10778      0.9803102
+163      105.82240      0.9887979
+164      107.53666      0.9973138
+165      109.25066      1.0058508
+166      110.96447      1.0144034
+167      112.67812      1.0229677
+168      114.39166      1.0315408
+169      116.10512      1.0401205
+170      117.81852      1.0487050
+171      119.53187      1.0572932
+172      121.24519      1.0658841
+173      122.95848      1.0744770
+174      124.67175      1.0830715
+175      126.38501      1.0916671
+176      128.09826      1.1002635
+177      129.81150      1.1088606
+178      131.52473      1.1174582
+179      133.23796      1.1260561
+180      134.95119      1.1346542
+181      136.66441      1.1432526
+182      138.37763      1.1518511
+183      140.09085      1.1604498
+184      141.80407      1.1690485
+185      143.51729      1.1776472
+186      145.23051      1.1862460
+187      146.94372      1.1948449
+188      148.65694      1.2034438
+189      150.37016      1.2120427
+190      152.08337      1.2206416
+191      153.79659      1.2292405
+192      155.50981      1.2378394
+193      157.22302      1.2464384
+194      158.93624      1.2550373
+195      160.64945      1.2636362
+196      162.36267      1.2722352
+197      164.07589      1.2808341
+198      165.78910      1.2894331
+199      167.50232      1.2980320
+200      169.21553      1.3066310
+201      170.92875      1.3152299
+202      172.64197      1.3238289
+203      174.35518      1.3324278
+204      176.06840      1.3410268
+205      177.78161      1.3496257
+206      179.49483      1.3582247
+207      181.20805      1.3668236
+208      182.92126      1.3754226
+209      184.63448      1.3840215
+210      186.34769      1.3926205
+211      188.06091      1.4012194
+212      189.77412      1.4098184
+213      191.48734      1.4184173
+214      193.20056      1.4270163
+215      194.91377      1.4356152
+216      196.62699      1.4442142
+217      198.34020      1.4528131
+218      200.05342      1.4614121
+219      201.76664      1.4700110
+220      203.47985      1.4786100
+221      205.19307      1.4872089</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>We conclude that our ARIMA-X is the best model as it has the lowest AICc value.</p>
+<p>Based on our forecasts and predictions, we observe that all three of our variables will have a continued increase. This aligns with the understanding that human activities are driving global warming and consequent changes in climate patterns.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
