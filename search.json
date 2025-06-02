@@ -16,7 +16,7 @@
   {
     "objectID": "project_1.html",
     "href": "project_1.html",
-    "title": "Big Data Analytics Project",
+    "title": "Big Data Analytics Group Project",
     "section": "",
     "text": "For our big data project, my group and I analysed the used car market dynamics in Singapore by looking at the factors that affect the price of a used car and their significance."
   },
@@ -37,28 +37,28 @@
   {
     "objectID": "project_1.html#final-dataset-features",
     "href": "project_1.html#final-dataset-features",
-    "title": "Big Data Analytics Project",
+    "title": "Big Data Analytics Group Project",
     "section": "Final Dataset Features",
     "text": "Final Dataset Features\n\nCURB_WEIGHT_KG\nOMV\nCOE_LISTED:\nENGINE_CAPACITY_CC\nDAYS_OF_COE_LEFT\nMILEAGE_KM\nFEATURE_COUNT\nACCESSORIES_COUNT\nAGE_SINCE_MANUFACTURED\nNO_OF_OWNERS\nDAYS_SINCE_REGISTERED\nTYPE\nTRANSMISSION\nBRAND_CATEGORY\n\nWe then plot correlation plots, raster plots and bar plots with the final variables."
   },
   {
     "objectID": "project_1.html#correlation-plots-between-final-variables",
     "href": "project_1.html#correlation-plots-between-final-variables",
-    "title": "Big Data Analytics Project",
+    "title": "Big Data Analytics Group Project",
     "section": "Correlation Plots Between Final Variables",
     "text": "Correlation Plots Between Final Variables\nWe see that variables CURB_WEIGHT_KG, OMV, COE_LISTED, ENGINE_CAPACITY_CC, DAYS_OF_COE_LEFT have a positive relationship with PRICE while variables MILEAGE_KM, FEATURE_COUNT, ACCESSORIES_COUNT, AGE_SINCE_MANUFACTURED, NO_OF_OWNERS and DAYS_SINCE_REGISTERED have a negative relationship with PRICE.\n\ndf_second &lt;- df_numeric |&gt;\n  select(PRICE, MILEAGE_KM, CURB_WEIGHT_KG, OMV, NUM_PAST_OWNERS, COE_LISTED, ENGINE_CAPACITY_CC, DAYS_OF_COE_LEFT, FEATURE_COUNT, ACCESSORIES_COUNT, AGE_SINCE_MANUFACTURED, DAYS_SINCE_REGISTERED)\n\ncorrplot(cor(df_second), method = \"color\", type = \"lower\", tl.cex = 0.5, tl.col = \"black\", tl.srt = 45, addCoef.col = \"black\", number.cex = 0.6)"
   },
   {
     "objectID": "project_1.html#raster-plots-for-numerical-variables",
     "href": "project_1.html#raster-plots-for-numerical-variables",
-    "title": "Big Data Analytics Project",
+    "title": "Big Data Analytics Group Project",
     "section": "Raster Plots for numerical variables",
     "text": "Raster Plots for numerical variables\n\ndf_second |&gt;\n  dbplot_raster(x = MILEAGE_KM, y = PRICE, fill = n(), resolution = 10) +\n  scale_x_continuous(\"Mileage in Thousands Kilometre\", \n                     breaks = seq(0, 2000000, by = 100000),\n                     labels = scales::comma_format(scale = 1e-3)) +\n  scale_y_continuous(\"Price in Millions\",\n                     breaks = seq(0, 3000000, by = 500000),\n                     labels = scales::comma_format(scale = 1e-6))\n\n\n\n\n\n\n\n# PRICE against NUM_PAST_OWNERS\ndf_second |&gt;\n  dbplot_raster(x = NUM_PAST_OWNERS, y = PRICE, fill = n(), resolution = 10) +\n  scale_x_continuous(\"Number of Owners\") +\n  scale_y_continuous(\"Price in Millions\",\n                     breaks = seq(0, 3000000, by = 500000),\n                     labels = scales::comma_format(scale = 1e-6))\n\n\n\n\n\n\n\n# PRICE against OMV\ndf_second |&gt;\n  dbplot_raster(x = OMV, y = PRICE, fill = n(), resolution = 10) +\n  scale_x_continuous(\"Open Market Value in Thousands\", \n                     breaks = seq(0, 2000000, by = 100000),\n                     labels = scales::comma_format(scale = 1e-3)) +\n  scale_y_continuous(\"Price in Millions\",\n                     breaks = seq(0, 3000000, by = 500000),\n                     labels = scales::comma_format(scale = 1e-6))\n\n\n\n\n\n\n\n# PRICE against COE_LISTED\ndf_second |&gt;\n  dbplot_raster(x = COE_LISTED, y = PRICE, fill = n(), resolution = 10) +\n  scale_x_continuous(\"COE Listed\") +\n  scale_y_continuous(\"Price in Millions\",\n                     breaks = seq(0, 3000000, by = 500000),\n                     labels = scales::comma_format(scale = 1e-6))\n\n\n\n\n\n\n\n# PRICE against ENGINE_CAPACITY_CC\ndf_second |&gt;\n  dbplot_raster(x = ENGINE_CAPACITY_CC, y = PRICE, fill = n(), resolution = 10) +\n  scale_x_continuous(\"Engine Capacity\") +\n  scale_y_continuous(\"Price in Millions\",\n                     breaks = seq(0, 3000000, by = 500000),\n                     labels = scales::comma_format(scale = 1e-6))\n\n\n\n\n\n\n\n# PRICE against CURB_WEIGHT_KG\ndf_second |&gt;\n  dbplot_raster(x = CURB_WEIGHT_KG, y = PRICE, fill = n(), resolution = 10) +\n  scale_x_continuous(\"Curb Weight in Kilograms\") +\n  scale_y_continuous(\"Price in Millions\",\n                     breaks = seq(0, 3000000, by = 500000),\n                     labels = scales::comma_format(scale = 1e-6))\n\n\n\n\n\n\n\n# PRICE against DAYS_OF_COE_LEFT\ndf_second |&gt;\n  dbplot_raster(x = DAYS_OF_COE_LEFT, y = PRICE, fill = n(), resolution = 10) +\n  scale_x_continuous(\"Days of COE Left\") +\n  scale_y_continuous(\"Price in Millions\",\n                     breaks = seq(0, 3000000, by = 500000),\n                     labels = scales::comma_format(scale = 1e-6))\n\n\n\n\n\n\n\n# PRICE against FEATURE_COUNT\ndf_second |&gt;\n  dbplot_raster(x = FEATURE_COUNT, y = PRICE, fill = n(), resolution = 10) +\n  scale_x_continuous(\"Number of Features\") +\n  scale_y_continuous(\"Price in Millions\",\n                     breaks = seq(0, 3000000, by = 500000),\n                     labels = scales::comma_format(scale = 1e-6))\n\n\n\n\n\n\n\n# PRICE against ACCESSORIES_COUNT\ndf_second |&gt;\n  dbplot_raster(x = ACCESSORIES_COUNT, y = PRICE, fill = n(), resolution = 10) +\n  scale_x_continuous(\"Number of Accessories\") +\n  scale_y_continuous(\"Price in Millions\",\n                     breaks = seq(0, 3000000, by = 500000),\n                     labels = scales::comma_format(scale = 1e-6))\n\n\n\n\n\n\n\n# PRICE against AGE_SINCE_MANUFACTURED\ndf_second |&gt;\n  dbplot_raster(x = AGE_SINCE_MANUFACTURED, y = PRICE, fill = n(), resolution = 10) +\n  scale_x_continuous(\"Car's age since manufactured\") +\n  scale_y_continuous(\"Price in Millions\",\n                     breaks = seq(0, 3000000, by = 500000),\n                     labels = scales::comma_format(scale = 1e-6))\n\n\n\n\n\n\n\n# PRICE against DAYS_SINCE_REGISTERED\ndf_second |&gt;\n  dbplot_raster(x = DAYS_SINCE_REGISTERED, y = PRICE, fill = n(), resolution = 10) +\n  scale_x_continuous(\"Number of days since car is registered\") +\n  scale_y_continuous(\"Price in Millions\",\n                     breaks = seq(0, 3000000, by = 500000),\n                     labels = scales::comma_format(scale = 1e-6))"
   },
   {
     "objectID": "project_1.html#bar-plots-for-character-variables",
     "href": "project_1.html#bar-plots-for-character-variables",
-    "title": "Big Data Analytics Project",
+    "title": "Big Data Analytics Group Project",
     "section": "Bar Plots for character variables",
     "text": "Bar Plots for character variables\n\ndf_chr &lt;- df |&gt;\n  select(PRICE, TYPE, TRANSMISSION, BRAND_CATEGORY) |&gt;\n  collect()\n\n# PRICE against BRAND CATEGORY\nggplot(df_chr, aes(x = BRAND_CATEGORY, y = PRICE)) +\n  geom_bar(fill = \"orange\", stat = \"summary\", fun = \"mean\") +\n  labs(x = \"Category of Car Brands\", y = \"Average Price in Thousands\") +\n  scale_y_continuous(breaks = seq(0, 2000000, by = 100000),\n                     labels = scales::comma_format(scale = 1e-3))\n\n\n\n\n\n\n\n# PRICE against TYPE\nggplot(df_chr, aes(x = TYPE, y = PRICE)) +\n  geom_bar(fill = \"orange\", stat = \"summary\", fun = \"mean\") +\n  labs(x = \"Car Types\", y = \"Average Price in Thousands\") +\n  scale_y_continuous(breaks = seq(0, 2000000, by = 100000),\n                     labels = scales::comma_format(scale = 1e-3))\n\n\n\n\n\n\n\n# PRICE against TRANSMISSION\nggplot(df_chr, aes(x = TRANSMISSION, y = PRICE)) +\n  geom_bar(fill = \"orange\", stat = \"summary\", fun = \"mean\") +\n  labs(x = \"Car Transmission\", y = \"Average Price in Thousands\")"
   },
@@ -124,5 +124,82 @@
     "title": "Time Series Data Analysis Project",
     "section": "Vector Error Correction Model",
     "text": "Vector Error Correction Model\nSpecial case of VAR, includes all the terms that are in the VAR and more.\n\nDetermining number of cointegrating relationships\n\nsummary(ca.jo(tempmsl))\n\n\n###################### \n# Johansen-Procedure # \n###################### \n\nTest type: maximal eigenvalue statistic (lambda max) , with linear trend \n\nEigenvalues (lambda):\n[1] 0.1222926 0.0258292\n\nValues of teststatistic and critical values of test:\n\n          test 10pct  5pct  1pct\nr &lt;= 1 |  3.64  6.50  8.18 11.65\nr = 0  | 18.13 12.91 14.90 19.19\n\nEigenvectors, normalised to first column:\n(These are the cointegration relations)\n\n                  mean.sea.level.l2 temp.anomalies.l2\nmean.sea.level.l2            1.0000            1.0000\ntemp.anomalies.l2         -199.2354          142.5095\n\nWeights W:\n(This is the loading matrix)\n\n                 mean.sea.level.l2 temp.anomalies.l2\nmean.sea.level.d       -0.02337127      0.0074556040\ntemp.anomalies.d        0.00130072      0.0000577494\n\n\n3.64 is smaller than all of the critical values, thus we conclude that there is 1 cointegrating relationship.\n\n\nDetermine number of lags\n\nVARselect(tempmsl)\n\n$selection\nAIC(n)  HQ(n)  SC(n) FPE(n) \n     4      2      1      4 \n\n$criteria\n                1          2          3          4          5          6\nAIC(n) -1.2194397 -1.3016037 -1.3123297 -1.3293649 -1.2882188 -1.2705232\nHQ(n)  -1.1659288 -1.2124189 -1.1874709 -1.1688322 -1.0920122 -1.0386427\nSC(n)  -1.0877513 -1.0821230 -1.0050567 -0.9342996 -0.8053613 -0.6998734\nFPE(n)  0.2954004  0.2721153  0.2692471  0.2647601  0.2759802  0.2810529\n                7          8          9         10\nAIC(n) -1.2262336 -1.1822807 -1.1627808 -1.1335708\nHQ(n)  -0.9586791 -0.8790523 -0.8238785 -0.7589945\nSC(n)  -0.5677914 -0.4360463 -0.3287541 -0.2117518\nFPE(n)  0.2939881  0.3074825  0.3139063  0.3236826\n\n\n\n\nBuilding VECM model\nBuild a VECM model with lag 1 and 1 cointegrating relationship\n\n\n\n\n\n\n\n\n\n\n\n                                ECT  Intercept mean.sea.level -1\nEquation mean.sea.level -0.02337127 0.05809115      -0.284712293\nEquation temp.anomalies  0.00130072 0.12966909      -0.001091056\n                        temp.anomalies -1\nEquation mean.sea.level        1.57031527\nEquation temp.anomalies       -0.08026665\n\n\n\n\nLjung-Box test\n\nresiduals &lt;- resid(vecmmodel)\n\nBox.test(residuals[,1], lag = 1, type = \"Ljung\") # mean sea level\n\n\n    Box-Ljung test\n\ndata:  residuals[, 1]\nX-squared = 0.16196, df = 1, p-value = 0.6874\n\nBox.test(residuals[,2], lag = 1, type = \"Ljung\") # temp anomalies\n\n\n    Box-Ljung test\n\ndata:  residuals[, 2]\nX-squared = 0.084895, df = 1, p-value = 0.7708\n\n\nSince p-values are more than 0.05, we fail to reject null hypothesis. This indicates that there is insufficient evidence to conclude that there is autocorrelation.\n\n\nPredict future values\n\npredict(vecmmodel, n.ahead=80)\n\n    mean.sea.level temp.anomalies\n142       67.85203      0.9567247\n143       70.16557      0.9291047\n144       72.20801      0.9089553\n145       74.19780      0.8963804\n146       76.10942      0.8891019\n147       77.97305      0.8858563\n148       79.79801      0.8856045\n149       81.59485      0.8875936\n150       83.37048      0.8912552\n151       85.13033      0.8961664\n152       86.87838      0.9020109\n153       88.61761      0.9085524\n154       90.35026      0.9156147\n155       92.07799      0.9230658\n156       93.80204      0.9308074\n157       95.52335      0.9387660\n158       97.24262      0.9468867\n159       98.96035      0.9551284\n160      100.67694      0.9634605\n161      102.39268      0.9718601\n162      104.10778      0.9803102\n163      105.82240      0.9887979\n164      107.53666      0.9973138\n165      109.25066      1.0058508\n166      110.96447      1.0144034\n167      112.67812      1.0229677\n168      114.39166      1.0315408\n169      116.10512      1.0401205\n170      117.81852      1.0487050\n171      119.53187      1.0572932\n172      121.24519      1.0658841\n173      122.95848      1.0744770\n174      124.67175      1.0830715\n175      126.38501      1.0916671\n176      128.09826      1.1002635\n177      129.81150      1.1088606\n178      131.52473      1.1174582\n179      133.23796      1.1260561\n180      134.95119      1.1346542\n181      136.66441      1.1432526\n182      138.37763      1.1518511\n183      140.09085      1.1604498\n184      141.80407      1.1690485\n185      143.51729      1.1776472\n186      145.23051      1.1862460\n187      146.94372      1.1948449\n188      148.65694      1.2034438\n189      150.37016      1.2120427\n190      152.08337      1.2206416\n191      153.79659      1.2292405\n192      155.50981      1.2378394\n193      157.22302      1.2464384\n194      158.93624      1.2550373\n195      160.64945      1.2636362\n196      162.36267      1.2722352\n197      164.07589      1.2808341\n198      165.78910      1.2894331\n199      167.50232      1.2980320\n200      169.21553      1.3066310\n201      170.92875      1.3152299\n202      172.64197      1.3238289\n203      174.35518      1.3324278\n204      176.06840      1.3410268\n205      177.78161      1.3496257\n206      179.49483      1.3582247\n207      181.20805      1.3668236\n208      182.92126      1.3754226\n209      184.63448      1.3840215\n210      186.34769      1.3926205\n211      188.06091      1.4012194\n212      189.77412      1.4098184\n213      191.48734      1.4184173\n214      193.20056      1.4270163\n215      194.91377      1.4356152\n216      196.62699      1.4442142\n217      198.34020      1.4528131\n218      200.05342      1.4614121\n219      201.76664      1.4700110\n220      203.47985      1.4786100\n221      205.19307      1.4872089"
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Qistina's Portfolio",
+    "section": "",
+    "text": "Visualising Singapore’s Public Transport Data\nThis is a self-project to try data visualisation in Python, focusing on plotting and analysing public transport data to gain insights.\n\n\n\nAnalysing and Modelling Resale Car Prices\nThis is a group project for Big Data Analytics Module, focusing on analysing resale car prices on SGCarMart. I am involved in visualising the data, carrying out exploratory data analysis and creating a shiny web app to allow users to predict resale car prices based on selected variables.\n\n\n\nExamining and Modelling Climate Change Data\nThis is a group project for Time Series Data Analysis Module, investigate the relationship between climate change and three variables by examining its patterns and trends. I am involved in most of the project, such as carrying out the tests, differencing, variable analysis and modelling.\n\n\n\nForecasting HDB Resale Prices\nThis is a group project for Visual Analytics & Business Intelligence Module, focusing on optimising HDB resale pricing and building a data-driven tool for buyers and sellers. I am involved in building the forecast chart for the prices based on various attributes as well as creating a public visualisation on Tableau Public."
+  },
+  {
+    "objectID": "posts/index.html",
+    "href": "posts/index.html",
+    "title": "Welcome",
+    "section": "",
+    "text": "Hi, nice to meet you! 🍀\nI’m Qistina, a final-year Economics and Data Science student at Singapore Management University.\nI’m passionate about using data to explore topics in environmental sustainability, space conservation, and animal welfare. Since I was young, I’ve been drawn to protecting animals and the planet. Today, I aim to use my skills to contribute meaningfully to these causes.\nWhen I’m not coding or analyzing data, I enjoy spending time with my cats 🐈, watching movies 🍿, and wandering around Singapore.\nI’m currently open to data-related opportunities—whether it’s in analytics, research, or sustainability.\nLet’s connect!"
+  },
+  {
+    "objectID": "projects.html#group",
+    "href": "projects.html#group",
+    "title": "Qistina's Portfolio",
+    "section": "Group",
+    "text": "Group\n\n\n\n\nBig Data Analysis Project: Resale Car Prices\nThis is a group project for Big Data Analytics Module, focusing on analysing resale car prices on SGCarMart. My work involves visualising the data, carrying out exploratory data analysis and creating a shiny web app to allow users to predict resale car prices based on selected variables.\n\n\n\nTime Series Analysis Project: Climate Change Data\n\n\n\nVisual Analytics & Business Intelligence Project: HDB Resale Prices"
+  },
+  {
+    "objectID": "project_4.html",
+    "href": "project_4.html",
+    "title": "Visualising Singapore’s Public Transport Data",
+    "section": "",
+    "text": "In this project, I aim to visualise Singapore’s public transport data to explore key trends, patterns, and insights that can inform decision-making and improve user understanding. The dataset was found here. The project involves first cleaning the data, followed by creating visualisations. This blog summarises my thought process, while the complete, runnable code and results are available here.\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt"
+  },
+  {
+    "objectID": "project_4.html#reformat-dataset",
+    "href": "project_4.html#reformat-dataset",
+    "title": "Visualising Singapore’s Public Transport Data",
+    "section": "Reformat dataset",
+    "text": "Reformat dataset\nThe original dataset was structured with years as columns and variables as rows, so I transposed it to reformat the data for easier visualisation.\nmy_file = 'PublicTransportOperationAndRidershipAnnual.csv'\ndf = pd.read_csv(my_file) \n\ndf_transposed = df.set_index('DataSeries').transpose()\n\ndf_transposed = df.set_index('DataSeries').transpose().reset_index()\ndf_transposed = df_transposed.rename(columns={'index': 'year'})\nThe final dataset contains columns year, Rail Length, MRT Rail Length, LRT Rail Length, MRT km operated, LRT km operated, Average daily ridership (MRT), Average daily ridership (LRT), Average daily ridership (Bus) and Average Daily Trip - Point-To-Point (P2P) Transport (Taxis And Private Hire Cars)."
+  },
+  {
+    "objectID": "project_4.html#renaming-columns",
+    "href": "project_4.html#renaming-columns",
+    "title": "Visualising Singapore’s Public Transport Data",
+    "section": "Renaming columns",
+    "text": "Renaming columns\nI renamed the columns using lowercase letters and underscores for consistency and ease of use in code.\ndf_transposed = df_transposed.rename(columns = {'Rail Length': 'total_rail_length',\n                                                '    Mass Rapid Transit (MRT)': 'mrt_rail_length',\n                                                '    Light Rail Transit (LRT)': 'lrt_rail_length',\n                                                'MRT km Operated': 'mrt_km_operated',\n                                                'LRT km Operated': 'lrt_km_operated',\n                                                'Average Daily Ridership - MRT': 'mrt_avg_daily_ridership',\n                                                'Average Daily Ridership - LRT': 'lrt_avg_daily_ridership',\n                                                'Average Daily Ridership - Public Bus': 'bus_avg_daily_ridership',\n                                                'Average Daily Trip - Point-To-Point (P2P) Transport (Taxis And Private Hire Cars)': 'p2p_avg_daily_trip'})"
+  },
+  {
+    "objectID": "project_4.html#fill-in-missing-values",
+    "href": "project_4.html#fill-in-missing-values",
+    "title": "Visualising Singapore’s Public Transport Data",
+    "section": "Fill in missing values",
+    "text": "Fill in missing values\nThe dataset uses ‘na’ to denote missing values, which I replaced with NaN for compatibility with pandas dataframes. For missing LRT rail length data, I replaced it with 0, as the sum of MRT and LRT rail lengths must match the total rail length.\ndf_transposed = df_transposed.replace(['na'], pd.NA)\n\nlrt_missing = df_transposed['lrt_rail_length'].isna()\n\ndf_transposed.loc[lrt_missing, 'lrt_rail_length'] = 0"
+  },
+  {
+    "objectID": "project_4.html#converting-datatypes-to-numeric",
+    "href": "project_4.html#converting-datatypes-to-numeric",
+    "title": "Visualising Singapore’s Public Transport Data",
+    "section": "Converting datatypes to numeric",
+    "text": "Converting datatypes to numeric\nThe variables are of object type, so I converted them to numeric values.\ndf_transposed = df_transposed.apply(pd.to_numeric, errors='coerce')"
+  },
+  {
+    "objectID": "project_4.html#dropping-unnecessary-columns",
+    "href": "project_4.html#dropping-unnecessary-columns",
+    "title": "Visualising Singapore’s Public Transport Data",
+    "section": "Dropping unnecessary columns",
+    "text": "Dropping unnecessary columns\nSince the analysis focuses only on public transport, I dropped the p2p_avg_daily_trip column. Additionally, the dataset has significant gaps for years before 2009, so I removed those rows to maintain data quality.\ndf_transposed = df_transposed.drop(columns = ['p2p_avg_daily_trip'])\n\ndf_transposed = df_transposed[0:15]"
+  },
+  {
+    "objectID": "project_4.html#plotting-rail-length-against-year",
+    "href": "project_4.html#plotting-rail-length-against-year",
+    "title": "Visualising Singapore’s Public Transport Data",
+    "section": "Plotting rail length against year",
+    "text": "Plotting rail length against year\nplt.style.use('ggplot')\n\ndf_sorted = df_transposed.sort_values(by='year')\n\nplt.plot(df_sorted['year'], df_sorted['total_rail_length'], marker='o', label=\"Total\")\nplt.plot(df_sorted['year'], df_sorted['mrt_rail_length'], marker='o', label=\"MRT\")\nplt.plot(df_sorted['year'], df_sorted['lrt_rail_length'], marker='o', label=\"LRT\")\n\nplt.xlabel('Year')\nplt.ylabel('Total Rail Length (in kilometres)')\nplt.title('Total Rail Length vs Year')\nplt.xticks(fontsize=8)\nplt.yticks(fontsize=10)\n\nplt.legend(loc=(1.02, 0)) \n\nplt.tight_layout() \n\nplt.show()"
+  },
+  {
+    "objectID": "project_4.html#plotting-riderships-against-year",
+    "href": "project_4.html#plotting-riderships-against-year",
+    "title": "Visualising Singapore’s Public Transport Data",
+    "section": "Plotting riderships against year",
+    "text": "Plotting riderships against year\nplt.plot(df_sorted['year'], df_sorted['mrt_avg_daily_ridership'], marker='o', label='MRT')\nplt.plot(df_sorted['year'], df_sorted['lrt_avg_daily_ridership'], marker='o', label='LRT')\nplt.plot(df_sorted['year'], df_sorted['bus_avg_daily_ridership'], marker='o', label='Bus')\n\nplt.xlabel('Year')\nplt.ylabel('Average Daily Ridership (in thousands)')\nplt.title('Average Daily Ridership vs Year')\n\nplt.xticks(fontsize=8)\nplt.yticks(fontsize=10)\n\nplt.legend(loc=(1.02, 0)) \n\nplt.tight_layout() \n\nplt.show()"
   }
 ]
