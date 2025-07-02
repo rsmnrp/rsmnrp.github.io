@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Blog – Qistina’s Portfolio</title>
+<title>Understanding IPOs through Microsoft Stock Growth – Qistina’s Portfolio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -99,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./blogs.html" aria-current="page"> <i class="bi bi-pencil" role="img">
+    <a class="nav-link" href="./blogs.html"> <i class="bi bi-pencil" role="img">
 </i> 
 <span class="menu-text">Blog</span></a>
   </li>  
@@ -130,15 +164,28 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#ipo-process" id="toc-ipo-process" class="nav-link" data-scroll-target="#ipo-process">IPO Process</a></li>
+  <li><a href="#example-microsoft" id="toc-example-microsoft" class="nav-link" data-scroll-target="#example-microsoft">Example: Microsoft</a></li>
+  <li><a href="#tracking-microsofts-stock-price" id="toc-tracking-microsofts-stock-price" class="nav-link" data-scroll-target="#tracking-microsofts-stock-price">Tracking Microsoft’s Stock Price</a>
+  <ul class="collapse">
+  <li><a href="#whats-stock-splits-dividends" id="toc-whats-stock-splits-dividends" class="nav-link" data-scroll-target="#whats-stock-splits-dividends">What’s stock splits / dividends?</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Blog</h1>
+<h1 class="title">Understanding IPOs through Microsoft Stock Growth</h1>
 </div>
 
 
@@ -155,22 +202,60 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This blog is a space where I simplify and reflect on concepts I’ve encountered, whether in class, articles, or current events. This allows me to process and make sense of ideas, especially in economics and data.</p>
-<table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td><a href="blog_2.html"><strong>Understanding IPOs through Microsoft Stock Growth</strong></a></td>
-<td>This post breaks down Microsoft’s 1986 IPO and traces its stock price growth to today. I explain key IPO concepts like stock splits and dividends, show how to analyze stock data with Python, and share what I’ve learned as someone starting out in finance and data analysis.</td>
-</tr>
-<tr class="even">
-<td><a href="blog_1.html"><strong>The 2022 British Pound Crash</strong></a></td>
-<td><p>This post reflects on Paul Krugman’s <em>New York Times</em> commentary on the 2022 British Pound crisis. I summarize his main arguments, connect them to Reagan-era economic theory, and share what I took away from the analysis as a student of economics.</p>
-<h4 id="section" class="anchored"></h4></td>
-</tr>
-</tbody>
-</table>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Initial Public Offering, or better known as IPO, is the process where a private company sells shares of its stocks to the public on a stock exchange. By transitioning from private to public ownership, it provides the company with an opportunity to raise capital to fund growth, or pay off debt. Going public also allows early investors of the company to sell some or all of their shares in the company.&nbsp;</p>
+</section>
+<section id="ipo-process" class="level2">
+<h2 class="anchored" data-anchor-id="ipo-process">IPO Process</h2>
+<p>A company that is interested in an IPO would either approach underwriters privately to see who’s interested in handling the IPO, or make a public announcement to generate interest. The underwriters chosen by the company would then lead the IPO process and handle aspects such as due diligence, filing, marketing, etc.&nbsp;</p>
+</section>
+<section id="example-microsoft" class="level2">
+<h2 class="anchored" data-anchor-id="example-microsoft">Example: Microsoft</h2>
+<p>In 1986, Microsoft decided to pursue a public stock offering. Microsoft chose world renowned investment banking company Goldman Sachs as their underwriters, as well as Alex. Brown &amp; Sons. Initially, the underwriters chose an offer price of US$17-20 per share but Bill Gates suggested a lower range of US$16-19. After conducting a roadshow to interact with potential investors, Microsoft realised that the interest was so strong that Goldman Sachs suggested Microsoft to increase the price range and the number of shares to be sold. They then decided to set the IPO price at US$21 and offered 2.5 million shares. The offering price increased to $35.50 at the end of the day with an additional 295,000 shares sold. Microsoft’s IPO was dubbed IPO of the year, generating a whopping US$61 million.</p>
+</section>
+<section id="tracking-microsofts-stock-price" class="level2">
+<h2 class="anchored" data-anchor-id="tracking-microsofts-stock-price">Tracking Microsoft’s Stock Price</h2>
+<p>That was in 1986, almost 40 years ago. What is the price of a Microsoft share now? Let’s find out through a small coding project.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yfinance <span class="im">as</span> yf</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Latest stock price</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>ticker <span class="op">=</span> yf.Ticker(<span class="st">"MSFT"</span>)  </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>current_price <span class="op">=</span> ticker.fast_info[<span class="st">"lastPrice"</span>]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Current stock price:"</span>, current_price)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot stock prices since IPO</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>msft <span class="op">=</span> yf.Ticker(<span class="st">"MSFT"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> msft.history(period<span class="op">=</span><span class="st">"max"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.plot(data.index, data[<span class="st">"Close"</span>], label<span class="op">=</span><span class="st">"MSFT Closing Price"</span>, color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Microsoft (MSFT) Stock Price Since IPO (log scale)"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Year"</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Price in USD"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plt.yscale(<span class="st">"log"</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As of 1 July:<br>
+Current Price (1 July 2025): $497</p>
+<p><img src="output.png" class="img-fluid"></p>
+<p>It may not seem like much at first, but that is an increase of about 2,271%. If someone had bought $1000 worth of stocks during the IPO, their investment would be worth over $23,000 today! Of course, that’s not counting stock splits or dividends, which would increase their investment even more.</p>
+<section id="whats-stock-splits-dividends" class="level3">
+<h3 class="anchored" data-anchor-id="whats-stock-splits-dividends">What’s stock splits / dividends?</h3>
+<p>Stock splits is when a company divides its stock into multiple shares, lowering the price of each share without changing the company’s market value. Dividends is the sum of money paid by a company to its shareholders out of its profits. By also considering Microsoft’s stock splits and dividends over the years, the total return on an initial investment is even higher.</p>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>From Microsoft’s humble IPO in 1986 to becoming one of the world’s most valuable companies, this story is a powerful reminder of how much can change over time. Rising from a $21 IPO price to nearly $500 today, Microsoft’s growth highlights how the stock market can reward patience, innovation, and long-term thinking. As someone starting out in finance, exploring IPOs and company performance has been a great way to deepen my understanding of the markets, and combining that with coding has helped me uncover insights through data in an even more meaningful way :)</p>
+<p>You can also track a stock price history using my code <a href="https://github.com/rsmnrp/stockpricetracker">here</a>!</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

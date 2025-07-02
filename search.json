@@ -214,6 +214,48 @@
     "href": "blogs.html",
     "title": "Blog",
     "section": "",
-    "text": "This blog is a space where I simplify and reflect on concepts I’ve encountered, whether in class, articles, or current events. This allows me to process and make sense of ideas, especially in economics and data.\n\n\n\nThe 2022 British Pound Crash\nThis post reflects on Paul Krugman’s New York Times commentary on the 2022 British Pound crisis. I summarize his main arguments, connect them to Reagan-era economic theory, and share what I took away from the analysis as a student of economics."
+    "text": "This blog is a space where I simplify and reflect on concepts I’ve encountered, whether in class, articles, or current events. This allows me to process and make sense of ideas, especially in economics and data.\n\n\n\nUnderstanding IPOs through Microsoft Stock Growth\nThis post breaks down Microsoft’s 1986 IPO and traces its stock price growth to today. I explain key IPO concepts like stock splits and dividends, show how to analyze stock data with Python, and share what I’ve learned as someone starting out in finance and data analysis.\n\n\nThe 2022 British Pound Crash\nThis post reflects on Paul Krugman’s New York Times commentary on the 2022 British Pound crisis. I summarize his main arguments, connect them to Reagan-era economic theory, and share what I took away from the analysis as a student of economics."
+  },
+  {
+    "objectID": "blog_2.html",
+    "href": "blog_2.html",
+    "title": "Understanding IPOs through Microsoft Stock Growth",
+    "section": "",
+    "text": "Initial Public Offering, or better known as IPO, is the process where a private company sells shares of its stocks to the public on a stock exchange. By transitioning from private to public ownership, it provides the company with an opportunity to raise capital to fund growth, or pay off debt. Going public also allows early investors of the company to sell some or all of their shares in the company."
+  },
+  {
+    "objectID": "blog_2.html#introduction",
+    "href": "blog_2.html#introduction",
+    "title": "Understanding IPOs through Microsoft Stock Growth",
+    "section": "",
+    "text": "Initial Public Offering, or better known as IPO, is the process where a private company sells shares of its stocks to the public on a stock exchange. By transitioning from private to public ownership, it provides the company with an opportunity to raise capital to fund growth, or pay off debt. Going public also allows early investors of the company to sell some or all of their shares in the company."
+  },
+  {
+    "objectID": "blog_2.html#ipo-process",
+    "href": "blog_2.html#ipo-process",
+    "title": "Understanding IPOs through Microsoft Stock Growth",
+    "section": "IPO Process",
+    "text": "IPO Process\nA company that is interested in an IPO would either approach underwriters privately to see who’s interested in handling the IPO, or make a public announcement to generate interest. The underwriters chosen by the company would then lead the IPO process and handle aspects such as due diligence, filing, marketing, etc."
+  },
+  {
+    "objectID": "blog_2.html#example-microsoft",
+    "href": "blog_2.html#example-microsoft",
+    "title": "Understanding IPOs through Microsoft Stock Growth",
+    "section": "Example: Microsoft",
+    "text": "Example: Microsoft\nIn 1986, Microsoft decided to pursue a public stock offering. Microsoft chose world renowned investment banking company Goldman Sachs as their underwriters, as well as Alex. Brown & Sons. Initially, the underwriters chose an offer price of US$17-20 per share but Bill Gates suggested a lower range of US$16-19. After conducting a roadshow to interact with potential investors, Microsoft realised that the interest was so strong that Goldman Sachs suggested Microsoft to increase the price range and the number of shares to be sold. They then decided to set the IPO price at US$21 and offered 2.5 million shares. The offering price increased to $35.50 at the end of the day with an additional 295,000 shares sold. Microsoft’s IPO was dubbed IPO of the year, generating a whopping US$61 million."
+  },
+  {
+    "objectID": "blog_2.html#tracking-microsofts-stock-price",
+    "href": "blog_2.html#tracking-microsofts-stock-price",
+    "title": "Understanding IPOs through Microsoft Stock Growth",
+    "section": "Tracking Microsoft’s Stock Price",
+    "text": "Tracking Microsoft’s Stock Price\nThat was in 1986, almost 40 years ago. What is the price of a Microsoft share now? Let’s find out through a small coding project.\nimport yfinance as yf\nimport matplotlib.pyplot as plt\n\n# Latest stock price\nticker = yf.Ticker(\"MSFT\")  \ncurrent_price = ticker.fast_info[\"lastPrice\"]\nprint(\"Current stock price:\", current_price)\n\n# Plot stock prices since IPO\nmsft = yf.Ticker(\"MSFT\")\ndata = msft.history(period=\"max\")\n\nplt.figure(figsize=(12, 6))\nplt.plot(data.index, data[\"Close\"], label=\"MSFT Closing Price\", color='green')\n\nplt.title(\"Microsoft (MSFT) Stock Price Since IPO (log scale)\")\nplt.xlabel(\"Year\")\nplt.ylabel(\"Price in USD\")\nplt.yscale(\"log\")\nplt.grid(True)\nplt.legend()\nplt.tight_layout()\nplt.show()\nAs of 1 July:\nCurrent Price (1 July 2025): $497\n\nIt may not seem like much at first, but that is an increase of about 2,271%. If someone had bought $1000 worth of stocks during the IPO, their investment would be worth over $23,000 today! Of course, that’s not counting stock splits or dividends, which would increase their investment even more.\n\nWhat’s stock splits / dividends?\nStock splits is when a company divides its stock into multiple shares, lowering the price of each share without changing the company’s market value. Dividends is the sum of money paid by a company to its shareholders out of its profits. By also considering Microsoft’s stock splits and dividends over the years, the total return on an initial investment is even higher."
+  },
+  {
+    "objectID": "blog_2.html#conclusion",
+    "href": "blog_2.html#conclusion",
+    "title": "Understanding IPOs through Microsoft Stock Growth",
+    "section": "Conclusion",
+    "text": "Conclusion\nFrom Microsoft’s humble IPO in 1986 to becoming one of the world’s most valuable companies, this story is a powerful reminder of how much can change over time. Rising from a $21 IPO price to nearly $500 today, Microsoft’s growth highlights how the stock market can reward patience, innovation, and long-term thinking. As someone starting out in finance, exploring IPOs and company performance has been a great way to deepen my understanding of the markets, and combining that with coding has helped me uncover insights through data in an even more meaningful way :)\nYou can also track a stock price history using my code here!"
   }
 ]
